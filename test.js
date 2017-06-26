@@ -41,12 +41,12 @@ describe("FileSystem", function() {
     describe("writeFile", function() {
         it("should add something", function() {
             let fs = new FileSystem();
-            fs.writeFile("newFile.js", "", false, {}, []);
+            fs.writeFile("newFile.js", "");
             expect(Object.keys(fs.fileSystem).length).to.equal(1);
             expect(fs.fileSystem["newFile.js"]).to.not.be.undefined;
             expect(fs.fileSystem["newFile.js"]).to.be.an("object");
 
-            fs.writeFile("newFile2.js", "", false, {}, []);
+            fs.writeFile("newFile2.js", "");
             expect(Object.keys(fs.fileSystem).length).to.equal(2);
             expect(fs.fileSystem["newFile2.js"]).to.not.be.undefined;
             expect(fs.fileSystem["newFile2.js"]).to.be.an("object");
@@ -67,11 +67,11 @@ describe("FileSystem", function() {
         it("should overwrite file data as necessary", function() {
             let fs = new FileSystem();
 
-            fs.writeFile("newFile.js", "", false, {}, []);
+            fs.writeFile("newFile.js", "");
             expect(fs.fileSystem["newFile.js"].fileName).to.equal("newFile.js");
             expect(fs.fileSystem["newFile.js"].text).to.equal("");
 
-            fs.writeFile("newFile.js", "console.log()", false, {}, []);
+            fs.writeFile("newFile.js", "console.log()");
             expect(fs.fileSystem["newFile.js"].text).to.equal("console.log()");
         })
     });
@@ -86,19 +86,19 @@ describe("FileSystem", function() {
     describe("getSourceFile", function() {
         it("should return undefined for nonexistent file", function() {
             let fs = new FileSystem();
-            expect(fs.getSourceFile("f.js", null, () => null)).to.be.undefined;
+            expect(fs.getSourceFile("f.js")).to.be.undefined;
         });
 
         it("should return some object", function() {
             let fs = new FileSystem();
             fs.writeFile("f.js", "", false, {}, []);
-            expect(fs.getSourceFile("f.js", null, () => null)).to.be.an("object");
+            expect(fs.getSourceFile("f.js")).to.be.an("object");
         });
 
         it("should return the right object", function() {
             let fs = new FileSystem();
             fs.writeFile("f.js", "console.log()", false, {}, []);
-            expect(fs.getSourceFile("f.js", null, () => null)).to.deep.equal({
+            expect(fs.getSourceFile("f.js")).to.deep.equal({
                 "fileName": "f.js",
                 "text": "console.log()"
             });
