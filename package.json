@@ -1,0 +1,14 @@
+{
+  "name": "browser-file-system",
+  "description": "A in-memory file system for use in-browser",
+  "scripts": {
+    "build": "node ./node_modules/typescript/bin/tsc",
+    "test": "node ./node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
+    "typescript": "^2.3.4"
+  }
+}
